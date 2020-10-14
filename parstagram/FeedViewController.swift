@@ -14,14 +14,35 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [PFObject]()
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         // Do any additional setup after loading the view.
     }
+
+    @objc func refresh(_ sender: AnyObject) {
+        // Code to refresh table view
+        let query = PFQuery(className: "Posts")
+        query.includeKey("author")
+        query.limit = 20
+        
+        query.findObjectsInBackground { (posts, error) in
+            if posts != nil {
+                self.posts = posts!
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        }
+     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
