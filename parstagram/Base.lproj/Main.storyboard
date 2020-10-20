@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="parstagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="parstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="437" id="Vca-1A-vnz" customClass="PostCell" customModule="parstagram" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="437" id="Vca-1A-vnz" customClass="PostCell" customModule="parstagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="437"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vca-1A-vnz" id="eMt-20-ZnZ">
@@ -158,6 +158,11 @@
                         <viewLayoutGuide key="safeArea" id="Dfs-yU-Aic"/>
                     </view>
                     <navigationItem key="navigationItem" id="18k-y8-0fb">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Tlq-CI-YRX">
+                            <connections>
+                                <action selector="onLogout:" destination="2L7-OR-a45" id="kUs-I8-I9b"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="LhG-Yo-1zY">
                             <connections>
                                 <segue destination="A56-EU-7NI" kind="presentation" id="0VR-hk-96S"/>
@@ -165,6 +170,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="onLogoutButton" destination="Tlq-CI-YRX" id="Qok-Qq-1ot"/>
                         <outlet property="tableView" destination="mCq-Lk-igh" id="wND-q3-P6Q"/>
                     </connections>
                 </viewController>
@@ -236,7 +242,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uGk-tT-yeU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3IG-Xi-l3Y" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="3IG-Xi-l3Y" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jXk-HR-1xN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

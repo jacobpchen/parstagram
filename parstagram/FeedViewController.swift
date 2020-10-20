@@ -13,6 +13,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var onLogoutButton: UIBarButtonItem!
+    
     var posts = [PFObject]()
     let refreshControl = UIRefreshControl()
     
@@ -79,6 +81,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    @IBAction func onLogout(_ sender: Any) {
+        PFUser.logOutInBackground { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            } else {
+                print("Successful Logout")
+                let main = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+                
+                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+                sceneDelegate.window?.rootViewController = loginViewController
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+    
 
     /*
     // MARK: - Navigation
